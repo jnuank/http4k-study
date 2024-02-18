@@ -9,6 +9,7 @@
 
   <modules>
     <module>rest</module>
+    <module>usecase</module>
   </modules>
 
   <url>http://maven.apache.org</url>
