@@ -4,15 +4,11 @@ import org.http4k.core.HttpHandler
 import org.http4k.core.Method.GET
 import org.http4k.core.Response
 import org.http4k.core.Status.Companion.OK
-import org.http4k.core.then
 import org.http4k.filter.DebuggingFilters.PrintRequest
 import org.http4k.routing.bind
 import org.http4k.routing.routes
-import org.http4k.server.SunHttp
-import org.http4k.server.asServer
+import org.http4k.server.*
 import kotlin.random.Random
-import org.http4k.server.ServerConfig
-import org.http4k.server.SunHttpLoom
 
 val app: HttpHandler = routes(
     "/ping" bind GET to {
@@ -27,7 +23,7 @@ val app: HttpHandler = routes(
 fun main() {
 //    val printingApp: HttpHandler = PrintRequest().then(app)
 
-    val server = app.asServer(SunHttpLoom(9000)).start()
+    val server = app.asServer(Helidon(9000)).start()
 
     println("Server started on " + server.port())
 }
