@@ -5,14 +5,19 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
 
 class MainKtTest {
-
     @Test
-    fun main() {
-    }
+    fun ユースケースのテスト() {
 
-    @Test
-    fun テスト() {
-        assertTrue(true)
+        val sut = ScientificResearchProjectsUsecase()
+        val actual = sut.execute()
+        val expected = ScientificResearchProjectsDto(
+            listOf(
+                ScientificResearchProjectDto(
+                    title = "研究課題1"
+                )
+            )
+        )
+        assertEquals(expected, actual)
     }
 
 }
