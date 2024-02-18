@@ -9,19 +9,19 @@ import org.junit.jupiter.api.Assertions.*
 class MainKtTest {
     @Test
     fun ユースケースのテスト() {
-        val driver = mockk<ScientificResearchPort>()
-        val dto = ScientificResearchProjectsInputDto(
+        val driver = mockk<ResearchPort>()
+        val dto = ResearchProjectsInputDto(
             listOf(
-                ScientificResearchProjectInputDto(
+                ResearchProjectInputDto(
                     title = "研究課題1"
                 )
             )
         )
-        every { driver.scientificResearchProjectsById() } returns dto
-        val sut = ScientificResearchProjectsUsecase(driver)
-        val expected = ScientificResearchProjectsDto(
+        every { driver.researchProjectsById() } returns dto
+        val sut = researchProjectsUsecase(driver)
+        val expected = ResearchProjectsDto(
             listOf(
-                ScientificResearchProjectDto(
+                ResearchProjectDto(
                     title = "研究課題1"
                 )
             )
@@ -31,19 +31,19 @@ class MainKtTest {
 
     @Test
     fun ユースケースのテスト2() {
-        val driver = mockk<ScientificResearchPort>()
-        val dto = ScientificResearchProjectsInputDto(
+        val driver = mockk<ResearchPort>()
+        val dto = ResearchProjectsInputDto(
             listOf(
-                ScientificResearchProjectInputDto(
+                ResearchProjectInputDto(
                     title = "研究課題2"
                 )
             )
         )
-        every { driver.scientificResearchProjectsById() } returns dto
-        val sut = ScientificResearchProjectsUsecase(driver)
-        val expected = ScientificResearchProjectsDto(
+        every { driver.researchProjectsById() } returns dto
+        val sut = researchProjectsUsecase(driver)
+        val expected = ResearchProjectsDto(
             listOf(
-                ScientificResearchProjectDto(
+                ResearchProjectDto(
                     title = "研究課題2"
                 )
             )
