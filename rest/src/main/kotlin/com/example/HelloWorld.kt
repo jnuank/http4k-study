@@ -22,10 +22,15 @@ val app: HttpHandler = routes(
         Response(OK).body("ping")
     },
     "/research" bind GET to {
-        val response = researchProjectsUsecase().execute()
-        Response(OK).with(
+        val response = ResearchProjectsUsecase().execute()
+        // ResponseはHttpMessageを実装する
+        val handler = Response(OK).with(
+            // Withは(Response) -> Response
+            // ↓は(Response) -> Response
+            // ↓は scientificResearch.of<Response>(response)ということ。withでResponse型に決まる
             scientificResearch.of(response)
         )
+        handler
     }
 )
 data class Email(val value: String)
@@ -34,8 +39,6 @@ data class Message(val subject: String, val from: Email, val to: Email)
 fun main() {
 //    val printingApp: HttpHandler = ResponseFilters
 //                                    .then(app)
-
-
     val server = app.asServer(Helidon(9000)).start()
 
     val request = Request(GET, "http://localhost:9000/research")
@@ -44,40 +47,9 @@ fun main() {
 
     val response = client(request)
 
-    val extracted = scientificResearch(response)
+    val extracted = scientificResearch.extract(response)
 
     println(extracted)
-
-//    println(response)
-
-    // We can use the auto method here from either Jackson, Gson or the Xml message format objects.
-    // Note that the auto() method needs to be manually imported as IntelliJ won't pick it up automatically.
-//    val messageLens = Body.auto<Message>().toLens()
-//
-//    val myMessage = Message("hello", Email("bob@git.com"), Email("sue@git.com"))
-//
-//    // to inject the body into the message - this also works with Response
-//    val requestWithEmail = messageLens(myMessage, Request(GET, "/pong"))
-//
-//    println(requestWithEmail)
-
-// Produces:
-//    GET / HTTP/1.1
-//    content-type: application/json
-//
-//    {"subject":"hello","from":{"value":"bob@git.com"},"to":{"value":"sue@git.com"}}
-
-//    // to extract the body from the message - this also works with Response
-//    val extractedMessage = messageLens(requestWithEmail)
-//
-//    println(extractedMessage)
-//    println(extractedMessage == myMessage)
-
-// Produces:
-//    Message(subject=hello, from=Email(value=bob@git.com), to=Email(value=sue@git.com))
-//    true
-
-//    println("Server started on " + server.port())
 }
 
 

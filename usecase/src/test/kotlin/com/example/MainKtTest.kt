@@ -18,7 +18,7 @@ class MainKtTest {
             )
         )
         every { driver.researchProjectsById() } returns dto
-        val sut = researchProjectsUsecase(driver)
+        val sut = ResearchProjectsUsecase(driver)
         val expected = ResearchProjectsDto(
             listOf(
                 ResearchProjectDto(
@@ -40,7 +40,7 @@ class MainKtTest {
             )
         )
         every { driver.researchProjectsById() } returns dto
-        val sut = researchProjectsUsecase(driver)
+        val sut = ResearchProjectsUsecase(driver)
         val expected = ResearchProjectsDto(
             listOf(
                 ResearchProjectDto(
