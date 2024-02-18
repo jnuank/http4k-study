@@ -12,7 +12,7 @@
     <groupId>com.example</groupId>
     <artifactId>usecase</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>rest</name>
+    <name>usecase</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -94,6 +94,12 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
             <version>1.9.22</version>
+        </dependency>
+        <dependency>
+            <groupId>io.mockk</groupId>
+            <artifactId>mockk-jvm</artifactId>
+            <version>1.13.9</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

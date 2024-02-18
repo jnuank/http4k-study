@@ -1,6 +1,6 @@
 package com.example
 
-class ScientificResearchProjectsUsecase {
+class ScientificResearchProjectsUsecase() {
     fun execute(): ScientificResearchProjectsDto {
         val expected = ScientificResearchProjectsDto(
             listOf(

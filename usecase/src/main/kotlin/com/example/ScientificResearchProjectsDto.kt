@@ -1,6 +1,6 @@
 package com.example
 
-data class ScientificResearchProjectsDto(val values: List<ScientificResearchProjectDto>) {
+data class ScientificResearchProjectsDto(val projects: List<ScientificResearchProjectDto>) {
 
 }
 
